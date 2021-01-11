@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  root 'channels#index'
+  root 'rooms#index'
+  resources :rooms, only: :show
+
   devise_for :users, :controllers => {
     :registrations => 'users/registrations',
     :sessions => 'users/sessions',
