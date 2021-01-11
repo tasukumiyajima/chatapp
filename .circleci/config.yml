@@ -30,7 +30,7 @@ jobs:
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
       - run:
           name: docker-compose up
-          command: docker-compose up -d
+          command: docker-compose up
       - run:
           name: Setup database
           command: |
@@ -43,7 +43,7 @@ jobs:
           command: docker-compose exec web rspec
       - run:
           name: rubocop
-          command: docker-compose exec rubocop
+          command: docker-compose exec web rubocop
 
   deploy:
     working_directory: ~/app
