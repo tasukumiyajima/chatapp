@@ -28,6 +28,9 @@ jobs:
             - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
       - run:
+          name: docker-compose up
+          command: docker-compose up -d
+      - run:
           name: Setup database
           command: |
             docker-compose exec web rake db:create
