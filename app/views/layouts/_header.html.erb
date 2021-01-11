@@ -1,0 +1,12 @@
+<header>
+  <nav>
+  <% if user_signed_in? %>
+      <strong><%= link_to current_user.name, "#" %></strong>
+      <%= link_to 'edit profile', edit_user_registration_path %>
+      <%= link_to 'logout', destroy_user_session_path, method: :delete %>
+  <% else %>
+      <%= link_to 'registration', new_user_registration_path %>
+      <%= link_to 'login', new_user_session_path %>
+      <% end %>
+  </nav>
+</header>
