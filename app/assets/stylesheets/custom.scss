@@ -1,0 +1,82 @@
+// universal
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+ul li {
+  list-style-type: none;
+}
+
+// header footer
+
+header {
+  a {
+  color: black;
+  }
+  .title {
+    font-weight: bold;
+  }
+  .nav-item {
+    padding-right: 10px;
+  }
+}
+
+footer {
+  height: 30px;
+  margin-top: 50px;
+}
+
+// devise
+.field {
+  margin-bottom: 15px;
+}
+
+.actions {
+  margin-bottom: 15px;
+}
+
+// room_index page
+
+.chat_room_title {
+  padding-bottom: 20px;
+}
+
+.chat_list {
+  padding: 10px;
+  border-bottom: 1px dotted gray;
+  .chat_users {
+    padding-left: 5px;
+    font-size: 0.9em;
+  }
+}
+.chat_room_btn {
+  margin-top: 10px;
+}
+
+// message
+
+.message {
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-bottom: 10px;
+  .message_user_name {
+    font-size: 0.9em;
+  }
+  .message_content {
+    font-size: 1.2em;
+    border: 1px solid gray;
+    border-radius: 4px;
+    display: inline-block;
+    p {
+      margin: 10px 15px;
+    }
+  }
+}
+
+.self {
+  text-align: right;
+  .message_content {
+    background-color: lightgreen;
+  }
+}

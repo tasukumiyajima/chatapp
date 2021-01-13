@@ -1,4 +1,8 @@
-<div class="message" id="message-<%= message.id %>">
-  <p><%= message.user.name %></p>
+<div class="message <%= "self" if message.user_id == current_user.id %>" id="message-<%= message.id %>">
+  <div class="message_user_name">
+    <%= message.user.name %>：
+  </div>
+  <div class="message_content">
     <%= simple_format(h message.content) %>
+  </div>
 </div>

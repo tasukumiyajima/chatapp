@@ -17,12 +17,5 @@ class RoomChannel < ApplicationCable::Channel
       user_id: current_user.id,
       room_id: params['room_id']
     )
-    # current_user.message.create!(content: data['message'], room_id: params['room'])
-    # @message = current_user.messages.create!(message_params)
   end
-
-  # private
-  #   def message_params
-  #     params.require(:message).permit(:content).merge(room_id: @room.id)
-  #   end
 end

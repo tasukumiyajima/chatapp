@@ -1,11 +1,8 @@
-<header class="sticky-top">
-  <nav class="navbar navbar-expand-sm navbar-light bg-light">
-    <%= link_to "Family", root_path, class: 'navbar-brand' %>
-    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="ナビゲーションの切替">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
+<header class="sticky-top bg-primary">
+  <nav class="navbar navbar-light bg-light">
+    <div class="container">
+      <%= link_to "チャットアプリ", root_path, class: 'title navbar-brand' %>
+      <ul class="navbar-nav navbar-right navbar-brand">
         <% if user_signed_in? %>
           <li class="nav-item active">
             <%= link_to 'アカウント編集', edit_user_registration_path, class: 'nav-link' %>
