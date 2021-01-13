@@ -1,5 +1,9 @@
 // RoomChannelとroomごとのsabscriptionを作る
-App.room = App.cable.subscriptions.create({ channel: "RoomChannel", room: $('#messages').data('room_id') }, {
+room_id = $('#messages').data('room_id')
+App.room = App.cable.subscriptions.create({ 
+  channel: "RoomChannel",
+  room_id: room_id 
+}, {
   connected: function() {
     // Called when the subscription is ready for use on the server
   },
@@ -10,7 +14,9 @@ App.room = App.cable.subscriptions.create({ channel: "RoomChannel", room: $('#me
 
   // サーバーサイドからブロードキャスト(送信)されたものを受け取る
   received: function(data) {
-    return $('#messages').append(data['message']);
+    if (data['room_id'] === room_id) {
+      return $('#messages').append(data['message']);
+    }
   },
 
   // テキストボックスの文字列=messageをroom_channel.rbのspeakアクションに送信

@@ -1,3 +1,4 @@
-<div class='message'>
-  <p><%= "#{message.user.email}: #{message.content}" %></p>
+<div class="message" id="message-<%= message.id %>">
+  <p><%= message.user.name %></p>
+    <%= simple_format(h message.content) %>
 </div>
