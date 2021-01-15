@@ -20,8 +20,12 @@ class RoomsController < ApplicationController
   def show
     @room = Room.find(params[:id])
     @messages = @room.messages.includes(:user).order(:id).last(100)
-    @users_in_room = User.joins(:messages).where(messages: { room_id: @room.id }).distinct
-    # @message = current_user.messages.build
+    # @room内のchecksをすべて削除する
+    current_user.delete_checks_in(@room)
+    # roomに入った段階で最新のメッセージをcheckする
+    if latest_message = @room.messages.where.not(user_id: current_user.id).order(:id).last
+      new_check = Check.create(user_id: current_user.id, message_id: latest_message.id)
+    end
   end
 
   private

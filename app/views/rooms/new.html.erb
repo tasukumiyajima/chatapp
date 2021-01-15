@@ -1,6 +1,8 @@
   <p><%= link_to "<< チャットルーム一覧に戻る", rooms_path %></p>
 <%= form_with model: @room, local: true do |f| %>
-   <%= f.label :名前 %><br />
-   <p><%= f.text_field :name %></p>
-   <p><%= f.submit "チャットルームの作成" %><p>
+  <%= render 'shared/error_messages', object: f.object, room: @room %>
+
+  <%= f.label :名前 %><br />
+  <p><%= f.text_field :name %></p>
+  <p><%= f.submit "チャットルームの作成" %><p>
  <% end %>

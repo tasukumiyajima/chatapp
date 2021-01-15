@@ -2,7 +2,7 @@
 room_id = $('#messages').data('room_id')
 App.room = App.cable.subscriptions.create({ 
   channel: "RoomChannel",
-  room_id: room_id 
+  room_id: room_id
 }, {
   connected: function() {
     // Called when the subscription is ready for use on the server

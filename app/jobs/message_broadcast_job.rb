@@ -13,7 +13,8 @@ class MessageBroadcastJob < ApplicationJob
 
   def render_message(message)
     # ApplicationController.rendererでは、コントローラーのアクションの制約を受けずに、任意のビューファイルをレンダリング可能
-    ApplicationController.renderer.render(
+    ApplicationController.render_with_signed_in_user(
+      message.user,
       partial: 'messages/message',
       locals: { message: message }
     )

@@ -8,6 +8,14 @@ ul li {
   list-style-type: none;
 }
 
+#error_explanation {
+  color: red;
+  ul {
+    color: red;
+    margin: 0 0 30px 0;
+  }
+}
+
 // header footer
 
 header {
@@ -72,6 +80,10 @@ footer {
       margin: 10px 15px;
     }
   }
+  .checked_users {
+    display: none;
+    font-size: 0.9em;
+  }
 }
 
 .self {
@@ -79,4 +91,7 @@ footer {
   .message_content {
     background-color: lightgreen;
   }
+  .displayed {
+    display: block !important;
+  }  
 }
