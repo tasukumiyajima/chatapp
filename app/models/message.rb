@@ -11,4 +11,13 @@ class Message < ApplicationRecord
   def checked_users
     User.joins(:checks).where(checks: { message_id: id })
   end
+
+  # 検索ワード(search)をcontentに含むmessageを探す
+  def self.search(search, room_id)
+    if search.present? && room_id.present?
+      Message.where(['content LIKE ?', "%#{search}%"]).where(room_id: room_id)
+    elsif search.present?
+      Message.where(['content LIKE ?', "%#{search}%"])
+    end
+  end
 end

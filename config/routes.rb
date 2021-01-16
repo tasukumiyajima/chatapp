@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :rooms, only: [:index, :new, :show, :create] do
     resources :messages, only: [:create]
   end
+  get '/search', to: 'rooms#search'
 
   mount ActionCable.server => "/cable"
 

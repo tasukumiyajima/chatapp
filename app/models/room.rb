@@ -7,8 +7,4 @@ class Room < ApplicationRecord
   def users_in_room
     User.joins(:messages).where(messages: { room_id: id }).distinct
   end
-
-  # def reads_in_room(user)
-  #   Read.joins(:message).where(user_id: user.id).where(message: { room_id: id })
-  # end
 end
