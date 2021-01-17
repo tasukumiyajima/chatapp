@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   end
   get '/search', to: 'rooms#search'
 
+  namespace :api, { format: 'json' } do
+    resources :emojis, only: :index
+  end
+
   mount ActionCable.server => "/cable"
 
   devise_for :users, :controllers => {

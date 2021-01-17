@@ -4,7 +4,7 @@
     <%= message.created_at.strftime('%Y/%m/%d %H:%M') %>
   </div>
   <div class="message_content">
-    <%= simple_format(h message.content) %>
+    <%= simple_format(emojify(h message.content)) %>
   </div>
   <div class="checked_users <%= "displayed" if message.checked_users.length > 0 %>" >
     既読

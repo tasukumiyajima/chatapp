@@ -13,6 +13,14 @@
 <%= label_tag :content, '入力：' %>
 <%= text_field_tag :content, nil, data: { behavior: 'room_speaker' } %>
 
+<input type="text" name="content" id="content_form" data-behavior="room_speaker">
+<input type="submit" name="commit" value="入力" class="form-btn" data-disable-with="入力">
+
+<%# <%= form_with model: @room, local:true do |f|%>
+  <%# <%=f.label :テキストを入力してください%> %>
+  <%# <%=f.text_area :text %> %>
+  <%# <%=f.submit "登録する"%> %>
+<%# <%end%> %> %>
 
 <%# <%= form_with(model: [@room, @message]) do |f| %>
   <%# <div class="form-group"> %>

@@ -3,7 +3,7 @@
 </div>
 <div>
   検索ワード：
-  <%= @searched_word %>
+  <%= emojify(@searched_word) %>
 </div>
 <div>
   検索対象のチャットルーム：
@@ -22,7 +22,7 @@
       <%= message.created_at.strftime('%Y/%m/%d %H:%M') %>
     </div>
     <div class="message_content">
-      <%= simple_format(h message.content) %>
+      <%= simple_format(emojify(h message.content)) %>
     </div>
   </div>
 <% end %>
