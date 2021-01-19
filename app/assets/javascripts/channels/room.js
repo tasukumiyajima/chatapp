@@ -40,7 +40,7 @@ $(document).ready(function(){
 
 // btnが押したときにApp.roomのspeakメソッドを発火
 $(document).ready(function(){
-  $('.form-btn').click(function(event){
+  $('#message-btn').click(function(event){
     var text = $('#content_form').val();
     if (text !== '') {
       App.room.speak(text);
@@ -82,26 +82,36 @@ $(function() {
   }
 });
 
-$(window).on('scroll', function() {
-  pageHeight = $(document).height(); // ページの全ての高さ
-  positionFromTop = $(window).scrollTop(); // スクロールの位置
-  if (positionFromTop <= (pageHeight * 0.05) ) {
-    $('#result').text('読み込み中...');
-    var oldestMessageId = $(".message:first").data("message_id");
-    var room_id = $('#messages').data('room_id');
-    $.ajax({
-      url: "/show_additionally",
-      type: "GET",
-      cache: false,
-      data: {
-        oldest_message_id: oldestMessageId,
-        id: room_id,
-        remote: true
+$(function() {
+  if ($("#content_form").length > 0) {
+    $(window).on('scroll', function() {
+      pageHeight = $(document).height(); // ページの全ての高さ
+      positionFromTop = $(window).scrollTop(); // スクロールの位置
+      if (positionFromTop <= (pageHeight * 0.05) ) {
+        $('#result').text('読み込み中...');
+        var oldestMessageId = $(".message:first").data("message_id");
+        var room_id = $('#messages').data('room_id');
+        $.ajax({
+          url: "/show_additionally",
+          type: "GET",
+          cache: false,
+          data: {
+            oldest_message_id: oldestMessageId,
+            id: room_id,
+            remote: true
+          }
+        })
+        .done(function(data){
+          $('#messages').prepend(data);
+          $('#result').text('');
+        });
       }
-    })
-    .done(function(data){
-      $('#messages').prepend(data);
-      $('#result').text('');
     });
   }
+});
+
+
+$(function() {
+  var keyword = $("#keyword").text();
+  $(".result").highlight(keyword);
 });

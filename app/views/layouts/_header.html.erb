@@ -16,6 +16,7 @@
           <%= f.hidden_field :id, :value => @room.id if @room.present? %>
           <%= f.text_field :search, class: "form-control", placeholder: "検索" %>
           <%= f.submit '検索', class: "form-btn" %>
+          <%# <%binding.pry%>
         <% end %>
       </div>
 
