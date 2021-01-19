@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :rooms, only: [:index, :new, :show, :create] do
     resources :messages, only: [:create]
   end
+  get "/show_additionally", to: "rooms#show_additionally"
   get '/search', to: 'rooms#search'
 
   namespace :api, { format: 'json' } do

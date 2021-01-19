@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :checked_messages, through: :checks, source: :message
   validates :name, presence: true, length: { maximum: 50 }
 
+  # roomの中のuserの既読データをすべて消す
   def delete_checks_in(room)
     if all_checks_of_user = Check.where(user_id: id)
       all_checks_of_user.each do |check|

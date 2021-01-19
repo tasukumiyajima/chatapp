@@ -19,6 +19,9 @@ ul li {
 // header footer
 
 header {
+  position: fixed;
+  width: 100%;
+  height: 50px;
   a {
   color: black;
   }
@@ -63,6 +66,10 @@ footer {
 }
 
 // message
+
+// nav.pagination {
+//   display: none;
+// }
 
 .message {
   margin-left: 40px;

@@ -1,4 +1,4 @@
-users = ["yamada", "abe", "tanaka", "yave", "kitani"]
+users = ["user1", "user2", "user3", "user4", "user5"]
 users.each_with_index do |user, i|
   User.create(
     name: "#{user}",
@@ -8,11 +8,3 @@ users.each_with_index do |user, i|
 end
 
 Room.create(name: "first_room")
-
-# 10.times do |n|
-#   Message.create(
-#     content: "test content",
-#     user_id: "1",
-#     room_id: "1"
-#   )
-# end

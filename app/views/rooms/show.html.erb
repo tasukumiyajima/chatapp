@@ -1,33 +1,11 @@
-<div class="chat-title">
-  <h4>
-    チャットルーム名：
-    <%= @room.name %>
-  </h4>
-  <p><%= link_to "<< チャットルーム一覧に戻る", rooms_path %></p>
-</div>
+<% provide(:title, @room.name) %>
 
-<div id="messages" data-room_id = "<%= @room.id %>">
+<p id="result"></p>
+<ul id="messages" data-room_id = "<%= @room.id %>">
   <%= render @messages %>
-</div>
+</ul>
 
-<%= label_tag :content, '入力：' %>
-<%= text_field_tag :content, nil, data: { behavior: 'room_speaker' } %>
-
-<input type="text" name="content" id="content_form" data-behavior="room_speaker">
-<input type="submit" name="commit" value="入力" class="form-btn" data-disable-with="入力">
-
-<%# <%= form_with model: @room, local:true do |f|%>
-  <%# <%=f.label :テキストを入力してください%> %>
-  <%# <%=f.text_area :text %> %>
-  <%# <%=f.submit "登録する"%> %>
-<%# <%end%> %> %>
-
-<%# <%= form_with(model: [@room, @message]) do |f| %>
-  <%# <div class="form-group"> %>
-    <%# <%= f.text_area :content, class: 'form-control', rows: '1', maxlength: '500' %>
-  <%# </div> %>
-
-  <%# <div class="form-group"> %>
-    <%# <%= f.submit '送信', class: 'btn btn-primary btn-block', id: 'message-button' %>
-  <%# </div> %>
-<%# <% end %>
+<form class="form_group">
+  <textarea type="text" name="content" id="content_form"></textarea>
+  <input type="submit" name="commit" value="入力" class="form-btn" data-disable-with="入力">
+</form>

@@ -29,15 +29,31 @@ $(document).ready(function(){
   });
 });
 
-  // enterが押されたときにApp.roomのspeakメソッドを発火させる
-$(document).on('keypress', '[data-behavior~=room_speaker]', function(event){
-  if (event.keyCode === 13) {
-    App.room.speak(event.target.value);　// event.target.valueでテキストボックスに打ち込んだ文字列を取得する
-    event.target.value = ''; // テキストボックスを空にする
-    return event.preventDefault(); // ブラウザのデフォルトの動作をpreventする
-  }
+//   // enterが押されたときにApp.roomのspeakメソッドを発火
+// $(document).on('keypress', '[data-behavior~=room_speaker]', function(event){
+//   if (event.keyCode === 13) {
+//     App.room.speak(event.target.value);　// event.target.valueでテキストボックスに打ち込んだ文字列を取得する
+//     event.target.value = ''; // テキストボックスを空にする
+//     return event.preventDefault(); // ブラウザのデフォルトの動作をpreventする
+//   }
+// });
+
+// btnが押したときにApp.roomのspeakメソッドを発火
+$(document).ready(function(){
+  $('.form-btn').click(function(event){
+    var text = $('#content_form').val();
+    if (text !== '') {
+      App.room.speak(text);
+      $('#content_form').val('');
+      event.preventDefault();
+      $('html, body').animate({ scrollTop: $(document).height() });
+    } else {
+      event.preventDefault();
+    }
+  });
 });
 
+// :を押すと絵文字のsuggestを表示
 $(document).ready(function(){
   $('#content_form, #room_search').textcomplete([
     {
@@ -57,4 +73,35 @@ $(document).ready(function(){
       maxCount: 10
     }
   ])
+});
+
+// showページを表示したらページ最下部に移動する
+$(function() {
+  if ($("#content_form").length > 0) {
+    window.scroll(0, $(document).height());
+  }
+});
+
+$(window).on('scroll', function() {
+  pageHeight = $(document).height(); // ページの全ての高さ
+  positionFromTop = $(window).scrollTop(); // スクロールの位置
+  if (positionFromTop <= (pageHeight * 0.05) ) {
+    $('#result').text('読み込み中...');
+    var oldestMessageId = $(".message:first").data("message_id");
+    var room_id = $('#messages').data('room_id');
+    $.ajax({
+      url: "/show_additionally",
+      type: "GET",
+      cache: false,
+      data: {
+        oldest_message_id: oldestMessageId,
+        id: room_id,
+        remote: true
+      }
+    })
+    .done(function(data){
+      $('#messages').prepend(data);
+      $('#result').text('');
+    });
+  }
 });
