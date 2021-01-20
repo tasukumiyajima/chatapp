@@ -1,19 +1,27 @@
 class RoomsController < ApplicationController
   def index
-    @rooms = Room.all.order(:id)
+    @rooms = Room.all.order("id DESC")
   end
 
   def new
     @room = Room.new
-    @room.users << current_user
+    # @room.users << current_user
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def create
     @room = Room.new(room_params)
-    if @room.save
-      redirect_to root_path
-    else
-      render :new
+    @rooms = Room.all.order("id DESC")
+    respond_to do |format|
+      if @room.save
+        format.html { redirect_to root_path }
+        format.js
+      else
+        format.js { render :new }
+      end
     end
   end
 
@@ -32,7 +40,10 @@ class RoomsController < ApplicationController
     @room = Room.find(params[:id])
     last_id = params[:oldest_message_id].to_i - 1
     @messages = @room.messages.includes(:user).order(:id).where(id: 1..last_id).last(5)
-    render partial: 'add_messages', locals: { messages: @messages}
+    respond_to do |format|
+      format.js
+      format.html { redirect_to room_path(id: params[:id]) }
+    end
   end
 
   def search

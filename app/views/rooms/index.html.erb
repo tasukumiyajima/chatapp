@@ -1,16 +1,9 @@
 <h2 class="chat_room_title">チャットルーム一覧</h2>
-<ul class="chat_lists">
-  <% @rooms.each do |room| %>
-    <li class="chat_list">
-      <%= link_to "#{room.name}", room_path(room), class:"family_button" %>
-      <p class="chat_users">
-        このチャットルームの参加者
-        <% room.users_in_room.each do |user| %>
-          /<%= user.name %> 
-        <% end %>
-      </p>
-    </li>
-  <% end %>
-</ul>
 
-<%= link_to "チャットルームを作成する", new_room_path, class: "btn btn-primary chat_room_btn" %>
+<%= link_to "チャットルームを作成する", new_room_path, remote: true,
+                        class: "btn btn-primary chat_room_btn" %>
+<div id="room-form"></div>
+
+<ul class="room_lists" id="rooms">
+  <%= render @rooms %>
+</ul>

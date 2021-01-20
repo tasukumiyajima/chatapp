@@ -75,14 +75,15 @@ $(document).ready(function(){
   ])
 });
 
-// showページを表示したらページ最下部に移動する
-$(function() {
+// showページを表示したら自動でページ最下部を表示する
+$(document).ready(function(){
   if ($("#content_form").length > 0) {
     window.scroll(0, $(document).height());
   }
 });
 
-$(function() {
+// 無限スクロール
+$(document).ready(function(){
   if ($("#content_form").length > 0) {
     $(window).on('scroll', function() {
       pageHeight = $(document).height(); // ページの全ての高さ
@@ -101,17 +102,29 @@ $(function() {
             remote: true
           }
         })
-        .done(function(data){
-          $('#messages').prepend(data);
-          $('#result').text('');
-        });
       }
     });
   }
 });
 
+// 検索結果のモーダル表示
+// $(document).ready(function(){
+//   $('.form-btn').click(function(){
+//     var  = $('#content_form').val();
+//     if (text !== '') {
+//       App.room.speak(text);
+//       $('#content_form').val('');
+//       event.preventDefault();
+//       $('html, body').animate({ scrollTop: $(document).height() });
+//     } else {
+//       event.preventDefault();
+//     }
+//   });
+// });
 
-$(function() {
+
+// 検索ワードに該当するところをハイライトする
+$(document).ready(function(){
   var keyword = $("#keyword").text();
   $(".result").highlight(keyword);
 });

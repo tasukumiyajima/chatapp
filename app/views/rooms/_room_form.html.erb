@@ -1,5 +1,5 @@
-<%= form_with model: @room, local: true do |f| %>
-  <%= render 'shared/error_messages', object: f.object, room: @room %>
+<%= form_with model: room, remote: true do |f| %>
+  <%= render 'shared/error_messages', object: f.object, room: room %>
 
   <%= f.label :名前 %><br />
   <p><%= f.text_field :name %></p>
