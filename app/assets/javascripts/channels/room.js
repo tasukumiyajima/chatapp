@@ -38,7 +38,7 @@ $(document).ready(function(){
 //   }
 // });
 
-// btnが押したときにApp.roomのspeakメソッドを発火
+// 送信ボタンを押したときにApp.roomのspeakメソッドを発火
 $(document).ready(function(){
   $('#message-btn').click(function(event){
     var text = $('#content_form').val();
@@ -106,6 +106,33 @@ $(document).ready(function(){
     });
   }
 });
+
+// 下部にスクロールしたときに既読情報をアップデートする
+$(document).ready(function(){
+  if ($("#content_form").length > 0) {
+    $(window).on('scroll', function() {
+      pageHeight = $(document).height(); // ページの全ての高さ
+      positionFromTop = $(window).scrollTop() + $(window).height(); // ページ最上部からのスクロールの位置
+      if ( (pageHeight - positionFromTop) / pageHeight <= 0.05) {
+        var oldestMessageId = $(".message:first").data("message_id");
+        var latestMessageId = $(".message:last").data("message_id");
+        var room_id = $('#messages').data('room_id');
+        $.ajax({
+          url: "/update_check",
+          type: "GET",
+          cache: false,
+          data: {
+            oldest_message_id: oldestMessageId,
+            latest_message_id: latestMessageId,
+            id: room_id,
+            remote: true
+          }
+        })
+      }
+    });
+  }
+});
+
 
 // // 検索ワードに該当するところをハイライトする
 // $(document).ready(function(){

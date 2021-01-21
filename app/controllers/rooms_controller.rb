@@ -36,6 +36,22 @@ class RoomsController < ApplicationController
     end
   end
 
+  def update_check
+    @room = Room.find(params[:id])
+    last_id = params[:oldest_message_id].to_i
+    latest_id = params[:latest_message_id].to_i
+    @messages = @room.messages.includes(:user).order(:id).where(id: last_id..latest_id)
+    # @room内のchecksをすべて削除する
+    current_user.delete_checks_in(@room)
+    # roomに入った段階で最新のメッセージをcheckする
+    if latest_message = @room.messages.where.not(user_id: current_user.id).order(:id).last
+      new_check = Check.create(user_id: current_user.id, message_id: latest_message.id)
+    end
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def show_additionally
     @room = Room.find(params[:id])
     last_id = params[:oldest_message_id].to_i - 1

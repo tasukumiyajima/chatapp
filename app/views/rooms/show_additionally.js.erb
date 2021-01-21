@@ -1,2 +1,2 @@
-$('#messages').prepend("<%= escape_javascript(render partial: 'add_messages', locals: { messages: @messages }) %>");
+$('#messages').prepend("<%= escape_javascript(render partial: 'new_messages', locals: { messages: @messages }) %>");
 $('#result').text('');
