@@ -1,2 +1,2 @@
-$('#rooms').html("<%= escape_javascript(render partial: 'index', locals: { rooms: @rooms }) %>");
+$('#rooms').html("<%= escape_javascript(render partial: 'updated_rooms', locals: { rooms: @rooms }) %>");
 $('#room-form').fadeOut(600);

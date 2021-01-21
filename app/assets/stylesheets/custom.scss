@@ -106,6 +106,37 @@ footer {
   margin-bottom: -0.3em;
 }
 
+// 検索結果
+
 .highlight {
   background-color:yellow;
+}
+
+#searched-modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 100;
+  display: none;
+}
+
+.modal-content {
+  color: black;
+  border-radius: 10px;
+  margin: 50px;
+  padding: 30px;
+  overflow-y: auto;
+  max-height: 88%;
+}
+
+.fa-times {
+  position: absolute;
+  top: 65px;
+  right: 70px;
+  color: black;
+  cursor: pointer;
+  z-index: 999;
 }

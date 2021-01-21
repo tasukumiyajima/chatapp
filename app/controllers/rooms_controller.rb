@@ -42,7 +42,8 @@ class RoomsController < ApplicationController
     @messages = @room.messages.includes(:user).order(:id).where(id: 1..last_id).last(5)
     respond_to do |format|
       format.js
-      format.html { redirect_to room_path(id: params[:id]) }
+      # format.html { redirect_to root_path }
+      #{ redirect_to room_path(id: params[:id]) }
     end
   end
 
@@ -70,6 +71,11 @@ class RoomsController < ApplicationController
     else
       flash[:danger] = "検索ワードを入力してください"
       redirect_to request.referrer || root_url
+    end
+
+    respond_to do |format|
+      format.html
+      format.js
     end
   end
 

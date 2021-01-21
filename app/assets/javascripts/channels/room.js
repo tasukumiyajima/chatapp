@@ -107,24 +107,14 @@ $(document).ready(function(){
   }
 });
 
-// 検索結果のモーダル表示
+// // 検索ワードに該当するところをハイライトする
 // $(document).ready(function(){
-//   $('.form-btn').click(function(){
-//     var  = $('#content_form').val();
-//     if (text !== '') {
-//       App.room.speak(text);
-//       $('#content_form').val('');
-//       event.preventDefault();
-//       $('html, body').animate({ scrollTop: $(document).height() });
-//     } else {
-//       event.preventDefault();
-//     }
-//   });
+//   var keyword = $("#keyword").text();
+//   $(".result").highlight(keyword);
 // });
 
-
-// 検索ワードに該当するところをハイライトする
-$(document).ready(function(){
-  var keyword = $("#keyword").text();
-  $(".result").highlight(keyword);
+// 検索モーダルの消去ボタン
+$(document).on("click", '.close-modal', function(){
+  $(this).parents('#searched-modal').fadeOut();
+  return false;
 });
