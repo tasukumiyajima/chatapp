@@ -3,7 +3,7 @@ module EmojiHelper
   def emojify(content)
     if content.present?
       h(content).to_str.gsub(/:([\w+-]+):/) do |match|
-        if emoji = Emoji.find_by_alias(Regexp.last_match(1))
+        if emoji = Emoji.find_by_alias(Regexp.last_match(1)) # rubocop:disable Lint/AssignmentInCondition
           %(<img alt="#{Regexp.last_match(1)}" src="#{image_path("emoji/#{emoji.image_filename}")}"
             style="vertical-align:middle" width="20" height="20" />)
         else

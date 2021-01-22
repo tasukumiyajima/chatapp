@@ -53,7 +53,7 @@ $(document).ready(function(){
         .then(function(data){
           $('#messages').prepend(data);
           $('#result').text('');
-          allowShow = true;
+          setTimeout(function(){ allowShow = true; }, 2000);
         })
       }
     });
@@ -86,7 +86,7 @@ $(document).ready(function(){
         })
         .then(function(data){
           $('#messages').html(data);
-          setTimeout(function(){ allowSend = true; }, 30000);
+          setTimeout(function(){ allowSend = true; }, 20000);
         })
       }
     });

@@ -30,7 +30,7 @@ class RoomsController < ApplicationController
     # @room内のchecksをすべて削除する
     current_user.delete_checks_in(@room)
     # @roomの最新のメッセージをcheckする
-    if latest_message = @room.messages.where.not(user_id: current_user.id).order(:id).last
+    if latest_message = @room.messages.where.not(user_id: current_user.id).order(:id).last # rubocop:disable Lint/AssignmentInCondition
       Check.create(user_id: current_user.id, message_id: latest_message.id)
     end
   end
@@ -40,7 +40,7 @@ class RoomsController < ApplicationController
     # @room内のchecksをすべて削除する
     current_user.delete_checks_in(@room)
     # @roomの最新のメッセージをcheckする
-    if latest_message = @room.messages.where.not(user_id: current_user.id).order(:id).last
+    if latest_message = @room.messages.where.not(user_id: current_user.id).order(:id).last # rubocop:disable Lint/AssignmentInCondition
       Check.create(user_id: current_user.id, message_id: latest_message.id)
     end
     last_id = params[:oldest_message_id].to_i
@@ -58,7 +58,7 @@ class RoomsController < ApplicationController
 
   def search
     if params[:room][:id].present?
-      if searched_area = Room.find(params[:room][:id])
+      if searched_area = Room.find(params[:room][:id]) # rubocop:disable Lint/AssignmentInCondition
         @searched_area = searched_area.name
       else
         @searched_area = "全てのチャットルーム"
