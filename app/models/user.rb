@@ -13,8 +13,8 @@ class User < ApplicationRecord
 
   # roomの中のuserの既読データをすべて消す
   def delete_checks_in(room)
-    if all_checks_of_user = Check.where(user_id: id)
-      all_checks_of_user.each do |check|
+    if checks_of_user = Check.where(user_id: id)
+      checks_of_user.each do |check|
         message_of_user = Message.find(check.message_id)
         check.destroy if message_of_user.room_id == room.id
       end

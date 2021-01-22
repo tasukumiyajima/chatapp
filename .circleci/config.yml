@@ -1,59 +1,36 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/app
-    docker:
-      - image: circleci/ruby:2.5.3
-        environment:
-          - BUNDLER_VERSION: 2.0.2
-          - RAILS_ENV: test
-      - image: circleci/mysql:5.7
-        environment:
-          - MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
-          - MYSQL_ROOT_HOST: '%'
-
+    machine:
+      image: circleci/classic:edge
     steps:
       - checkout
-      - setup_remote_docker
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "Gemfile.lock" }}
-          - v1-dependencies-
       - run:
-          name: install dependencies
-          command: |
-            gem install bundler -v 2.0.2
-            bundle install --jobs=4 --retry=3 --path vendor/bundle
-      - save_cache:
-          paths:
-            - ./vendor/bundle
-          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+          name: docker-compose build
+          command: docker-compose build
       - run:
           name: docker-compose up
           command: docker-compose up -d
       - run:
-          name: Setup database
+          name: sleep for waiting launch db
+          command: sleep 1
+      - run:
+          name: "before_test: setup db"
           command: |
-            docker-compose exec web rails webpacker:install
-            docker-compose exec web bundle install
-            docker-compose exec web bundle update
-            docker-compose exec web rake db:create
-            docker-compose exec web rake db:schema:load
+            docker-compose run web yarn install --check-files
+            docker-compose run web rails db:create db:migrate
       - run:
-          name: rspec
-          command: docker-compose exec web rspec
+          name: test
+          command: docker-compose run web rspec
       - run:
-          name: rubocop
-          command: docker-compose exec web rubocop
-
+          name: docker-compose down
+          command: docker-compose down
   deploy:
-    working_directory: ~/app
-    docker:
-      - image: sue445/heroku-cli
+    machine:
+      image: circleci/classic:edge
     steps:
       - checkout
-      - build-tools/install-ci-tools
-      - jq/install
+      # see: https://devcenter.heroku.com/articles/container-registry-and-runtime#using-a-ci-cd-platform
       - run:
           name: "build docker image"
           command: docker build --rm=false -t registry.heroku.com/${HEROKU_APP_NAME}/web .

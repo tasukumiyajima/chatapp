@@ -1,25 +1,23 @@
 <header class="bg-primary">
   <nav class="navbar navbar-light bg-light">
     <div class="container">
-      <% if @room.present? %>
+      <% if room.present? %>
         <div class="chat-title">
           <%= link_to "＜", rooms_path %>
-          チャットルーム名：<%= @room.name %>
+          チャットルーム名：<%= room.name %>
         </div>
       <% else %>
         <%= link_to "チャットアプリ", root_path, class: 'title navbar-brand' %>
       <% end %>
-
       <div class="nav navbar-nav hidden-xs">
         <%= form_with(class: "search-form", url: search_path, scope: :room,
                                             method: :get, remote: true) do |f| %>
-          <%= f.hidden_field :id, :value => @room.id if @room.present? %>
+          <%= f.hidden_field :id, :value => room.id if room.present? %>
           <%= f.text_field :search, class: "form-control", placeholder: "検索" %>
           <%= f.submit '検索', class: "form-btn" %>
         <% end %>
       </div>
       <div id="searched-modal"></div>
-
       <ul class="navbar-nav navbar-right navbar-brand">
         <% if user_signed_in? %>
           <li class="nav-item active">
