@@ -28,14 +28,14 @@ $(document).ready(function(){
 });
 
 // 無限スクロール
+var allowShow = true;
 $(document).ready(function(){
   if ($("#content_form").length) {
     $(window).on('scroll', function() {
-      var show = true;
       var pageHeight = $(document).height(); // ページの全ての高さ
       var positionFromTop = $(window).scrollTop(); // スクロールの位置
-      if (show && (positionFromTop <= (pageHeight * 0.01)) ) {
-        show = false;
+      if (allowShow && (positionFromTop <= (pageHeight * 0.01)) ) {
+        allowShow = false;
         $('#result').text('読み込み中...');
         var oldestMessageId = $(".message:first").data("message_id");
         var room_id = $('#messages').data('room_id');
@@ -53,7 +53,7 @@ $(document).ready(function(){
         .then(function(data){
           $('#messages').prepend(data);
           $('#result').text('');
-          show = true;
+          allowShow = true;
         })
       }
     });
@@ -61,14 +61,14 @@ $(document).ready(function(){
 });
 
 // 下部にスクロールしたときに既読情報をアップデートする
+var allowSend = true;
 $(document).ready(function(){
   if ($("#content_form").length) {
     $(window).on('scroll', function() {
-      var send = true;
       var pageHeight = $(document).height(); // ページの全ての高さ
       var scrollPosition = $(window).scrollTop() + $(window).height(); // ページ最上部からのスクロールの位置
-      if ( send && ((pageHeight - scrollPosition) / pageHeight <= 0.01)) {
-        send = false;
+      if ( allowSend && ((pageHeight - scrollPosition) / pageHeight <= 0.01)) {
+        allowSend = false;
         var oldestMessageId = $(".message:first").data("message_id");
         var latestMessageId = $(".message:last").data("message_id");
         var room_id = $('#messages').data('room_id');
@@ -86,7 +86,7 @@ $(document).ready(function(){
         })
         .then(function(data){
           $('#messages').html(data);
-          setTimeout(function(){ send = true; }, 30000);
+          setTimeout(function(){ allowSend = true; }, 30000);
         })
       }
     });

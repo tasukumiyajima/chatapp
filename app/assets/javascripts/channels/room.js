@@ -30,16 +30,16 @@ $(document).ready(function(){
 });
 
 // 送信ボタンを押したときにApp.roomのspeakメソッドを発火
+var allowClick = true;
 $(document).ready(function(){
-  var click = true;
   $('#message-btn').click(function(event){
     var text = $('#content_form').val();
-    if(click && text !== '') {
-      click = false;
+    if(allowClick && text !== '') {
+      allowClick = false;
       App.room.speak(text);
       $('#content_form').val('');
       $('html, body').animate({ scrollTop: $(document).height() });
-      click = true;
+      allowClick = true;
       event.preventDefault();
     } else {
       event.preventDefault();
