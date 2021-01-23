@@ -1,6 +1,6 @@
-<li class="chat_list">
+<li class="room_list">
   <%= link_to "#{room.name}", room_path(room), class:"family_button" %>
-  <p class="chat_users">
+  <p class="room_users">
     このチャットルームの参加者
     <% room.users_in_room.each do |user| %>
       /<%= user.name %> 

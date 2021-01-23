@@ -53,7 +53,7 @@ $(document).ready(function(){
         .then(function(data){
           $('#messages').prepend(data);
           $('#result').text('');
-          setTimeout(function(){ allowShow = true; }, 2000);
+          setTimeout(function(){ allowShow = true; }, 1000);
         })
       }
     });

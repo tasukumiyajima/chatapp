@@ -1,37 +1,27 @@
 <header class="bg-primary">
-  <nav class="navbar navbar-light bg-light">
-    <div class="container">
-      <% if room.present? %>
-        <div class="chat-title">
-          <%= link_to "＜", rooms_path %>
+  <div class="container">
+    <nav>
+      <div class="header-title">
+        <% if room.present? %>
+          <%= link_to rooms_path do %>
+            <span class= "fa fa-3x fa-angle-left"></span>
+          <% end %>
           チャットルーム名：<%= room.name %>
-        </div>
-      <% else %>
-        <%= link_to "チャットアプリ", root_path, class: 'title navbar-brand' %>
-      <% end %>
-      <div class="nav navbar-nav hidden-xs">
-        <%= form_with(class: "search-form", url: search_path, scope: :room,
-                                            method: :get, remote: true) do |f| %>
-          <%= f.hidden_field :id, :value => room.id if room.present? %>
-          <%= f.text_field :search, class: "form-control", placeholder: "検索" %>
-          <%= f.submit '検索', class: "form-btn" %>
+        <% else %>
+          チャットアプリ
         <% end %>
       </div>
-      <div id="searched-modal"></div>
-      <ul class="navbar-nav navbar-right navbar-brand">
-        <% if user_signed_in? %>
-          <li class="nav-item active">
-            <%= link_to 'アカウント編集', edit_user_registration_path, class: 'nav-link' %>
-          </li>
-        <% else %>
-          <li class="nav-item active">
-            <%= link_to "新規登録", new_user_registration_path, class: 'nav-link' %>
-          </li>
-          <li class="nav-item active">
-            <%= link_to "ログイン", new_user_session_path, class: 'nav-link' %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
-  </nav>
+      <% if user_signed_in? %>
+        <div>
+          <%= form_with(class: "form-inline  my-2 my-lg-0 search-form",
+                        url: search_path, scope: :room, method: :get, remote: true) do |f| %>
+            <%= f.hidden_field :id, :value => room.id if room.present? %>
+            <%= f.text_field :search, class: "form-control", placeholder: "テキストを入力" %>
+            <%= f.submit '検索', class: "form-btn" %>
+          <% end %>
+        </div>
+        <div id="searched-modal"></div>
+      <% end %>
+    </nav>
+  </div>
 </header>

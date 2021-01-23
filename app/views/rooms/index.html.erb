@@ -1,4 +1,5 @@
-<h2 class="chat_room_title">チャットルーム一覧</h2>
+<h4 class="myaccount"><%= link_to 'マイアカウント', edit_user_registration_path %></h4>
+<h2>チャットルーム一覧</h2>
 
 <%= link_to "チャットルームを作成する", new_room_path, remote: true,
                         class: "btn btn-primary chat_room_btn" %>

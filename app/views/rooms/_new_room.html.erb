@@ -1,0 +1,7 @@
+<%= form_with(class: "new_room_form", model: room, remote: true) do |f| %>
+  <%= render 'shared/error_messages', object: f.object, room: room %>
+
+  <%= f.label :チャットルーム名 %><br />
+  <p><%= f.text_field :name %></p>
+  <p><%= f.submit "チャットルームの作成" %><p>
+<% end %>
