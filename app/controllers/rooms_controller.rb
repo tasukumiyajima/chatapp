@@ -57,29 +57,27 @@ class RoomsController < ApplicationController
   end
 
   def search
-    if params[:room][:id].present?
+    if params[:room][:id].blank?
+      @searched_area = "全てのチャットルーム"
+    else
       if searched_area = Room.find(params[:room][:id]) # rubocop:disable Lint/AssignmentInCondition
         @searched_area = searched_area.name
       else
-        @searched_area = "全てのチャットルーム"
+        redirect_to request.referrer || root_url
       end
-    else
-      @searched_area = "全てのチャットルーム"
     end
 
-    if params[:room][:search].present?
+    if params[:room][:search].blank?
+      @searched_word = "検索ワードが入力されていません"
+      @messages = Message.none
+    else
+      @searched_word = params[:room][:search]
       searched_messages = Message.search(params[:room][:search], params[:room][:id])
       if searched_messages.any?
         @messages = searched_messages
-        @searched_word = params[:room][:search]
       else
         @messages = Message.none
-        @searched_word = params[:room][:search]
-        flash.now[:info] = "条件に一致するメッセージは見つかりませんでした"
       end
-    else
-      flash[:danger] = "検索ワードを入力してください"
-      redirect_to request.referrer || root_url
     end
 
     respond_to do |format|
@@ -90,7 +88,7 @@ class RoomsController < ApplicationController
 
   private
 
-    def room_params
-      params.require(:room).permit(:name).merge(user_ids: current_user.id)
-    end
+  def room_params
+    params.require(:room).permit(:name).merge(user_ids: current_user.id)
+  end
 end

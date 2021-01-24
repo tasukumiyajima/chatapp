@@ -1,0 +1,10 @@
+<div>
+  <%= form_with(class: "form-inline  my-2 my-lg-0 search-form",
+                url: search_path, scope: :room, method: :get, remote: true) do |f| %>
+
+    <%= f.hidden_field :id, :value => room.id if room.present? %>
+    <%= f.text_field :search, class: "form-control", placeholder: "テキストを入力" %>
+    <%= f.submit '検索', class: "form-btn" %>
+  <% end %>
+</div>
+<div id="searched-modal"></div>

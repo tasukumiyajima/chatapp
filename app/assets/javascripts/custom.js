@@ -86,7 +86,7 @@ $(document).ready(function(){
         })
         .then(function(data){
           $('#messages').html(data);
-          setTimeout(function(){ allowSend = true; }, 20000);
+          setTimeout(function(){ allowSend = true; }, 10000);
         })
       }
     });

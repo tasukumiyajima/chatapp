@@ -2,7 +2,7 @@
   <%= link_to "#{room.name}", room_path(room), class:"family_button" %>
   <p class="room_users">
     このチャットルームの参加者
-    <% room.users_in_room.each do |user| %>
+    <% room.users_of_messages.each do |user| %>
       /<%= user.name %> 
     <% end %>
   </p>

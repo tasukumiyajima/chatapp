@@ -4,7 +4,8 @@ class Room < ApplicationRecord
   has_many :messages
   validates :name, presence: true, length: { maximum: 50 }
 
-  def users_in_room
+  # roomの中にメッセージを投稿しているユーザーを取得
+  def users_of_messages
     User.joins(:messages).where(messages: { room_id: id }).distinct
   end
 end
