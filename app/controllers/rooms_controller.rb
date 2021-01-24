@@ -19,6 +19,7 @@ class RoomsController < ApplicationController
         format.html { redirect_to root_path }
         format.js
       else
+        format.html { render :new }
         format.js { render :new }
       end
     end
@@ -31,7 +32,7 @@ class RoomsController < ApplicationController
     current_user.delete_checks_in(@room)
     # @roomの最新のメッセージをcheckする
     if latest_message = @room.messages.where.not(user_id: current_user.id).order(:id).last # rubocop:disable Lint/AssignmentInCondition
-      Check.create(user_id: current_user.id, message_id: latest_message.id)
+      current_user.checks.create(message_id: latest_message.id)
     end
   end
 
@@ -41,7 +42,7 @@ class RoomsController < ApplicationController
     current_user.delete_checks_in(@room)
     # @roomの最新のメッセージをcheckする
     if latest_message = @room.messages.where.not(user_id: current_user.id).order(:id).last # rubocop:disable Lint/AssignmentInCondition
-      Check.create(user_id: current_user.id, message_id: latest_message.id)
+      current_user.checks.create(message_id: latest_message.id)
     end
     last_id = params[:oldest_message_id].to_i
     latest_id = params[:latest_message_id].to_i

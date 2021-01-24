@@ -12,9 +12,8 @@ class RoomChannel < ApplicationCable::Channel
 
   # room.jsで実行されたspeakのmessageを受けとり、Messageをデータベースに保存
   def speak(data)
-    Message.create!(
+    current_user.messages.create!(
       content: data['message'],
-      user_id: current_user.id,
       room_id: params['room_id']
     )
   end

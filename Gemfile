@@ -42,10 +42,10 @@ gem "devise-i18n"
 gem 'jquery-rails'
 gem "jquery-ui-rails"
 gem "bootstrap-sass", "~>3.3.6"
-gem 'pry-rails'
 gem 'jquery-textcomplete-rails'
 gem 'gemoji', "~>3.0.0"
 gem 'font-awesome-rails'
+gem 'faker'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -53,6 +53,7 @@ group :development, :test do
   gem 'rubocop-airbnb'
   gem 'rspec-rails'
   gem "factory_bot_rails"
+  gem 'pry-rails'
 end
 
 group :development do
@@ -68,10 +69,12 @@ end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 2.15'
+  gem 'capybara'
   gem 'selenium-webdriver'
+  gem 'webdrivers'
+  gem 'launchy'
   # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
+  # gem 'chromedriver-helper'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
