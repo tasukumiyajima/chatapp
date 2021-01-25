@@ -1,0 +1,19 @@
+<header class="bg-primary">
+  <div class="container">
+    <nav>
+      <div class="header-title">
+        <% if room.present? %>
+          <%= link_to rooms_path do %>
+            <span class= "fa fa-3x fa-angle-left"></span>
+          <% end %>
+          チャットルーム名：<%= room.name %>
+        <% else %>
+          チャットアプリ
+        <% end %>
+      </div>
+      <% if user_signed_in? %>
+        <%= render 'shared/search_form', room: room %>
+      <% end %>
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,11 @@
+<% provide(:title, @room.name) %>
+
+<p id="result"></p>
+<ul id="messages" data-room_id = "<%= @room.id %>">
+  <%= render @messages %>
+</ul>
+
+<form class="form_group">
+  <textarea type="text" name="content" id="content_form"></textarea>
+  <input type="submit" name="commit" id="message-btn" value="入力" data-disable-with="入力">
+</form>

@@ -1,0 +1,15 @@
+<li class="message <%= "self" if message.user_id == current_user.id %>" data-message_id="<%= message.id %>">
+  <div class="message_user_name">
+    <%= message.user.name %>：
+    <%= message.created_at.strftime('%Y/%m/%d %H:%M') %>
+  </div>
+  <div class="message_content">
+    <%= simple_format(emojify(h message.content)) %>
+  </div>
+  <div class="checked_users <%= "displayed" if message.checked_users.length > 0 %>" >
+    既読
+    <% message.checked_users.each do |user| %>
+     /<%= user.name %>
+    <% end %>
+  </div>
+</li>

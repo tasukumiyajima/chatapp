@@ -1,0 +1,214 @@
+// universal
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style-type: none;
+}
+
+#error_explanation {
+  color: red;
+  ul {
+    color: red;
+    margin: 0 0 30px 0;
+  }
+}
+
+// header footer
+
+header {
+  position: fixed;
+  width: 100%;
+  height: 60px;
+  font-size: 16px;
+  font-weight: bold;
+  a {
+  color: black;
+  }
+  nav {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    width: auto;
+    height: auto; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0px 30px;
+  }
+  .header-title {
+    display: flex;
+    align-items: center;
+    .fa-angle-left {
+      padding-right: 15px;
+    }
+  }
+  .form-inline {
+    display: flex;
+  }
+  .form-control {
+    margin-right: 5px;
+  }
+  .form-btn {
+    color: gray;
+  }
+}
+
+footer {
+  height: 15px;
+  margin-top: 10px;
+}
+
+// devise
+.field {
+  margin-bottom: 15px;
+}
+
+.actions {
+  margin-bottom: 15px;
+}
+
+// room_index
+
+.myaccount {
+  padding-top: 20px;
+}
+
+.new_room_form {
+  margin: 10px 0px;
+}
+
+.room_lists {
+  padding-top: 20px;
+}
+
+.room_list {
+  padding: 10px;
+  border-bottom: 1px dotted gray;
+  .room_users {
+    padding-left: 5px;
+    font-size: 0.9em;
+  }
+}
+.chat_room_btn {
+  margin: 10px 0px;
+}
+
+// message
+
+.message {
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-bottom: 10px;
+  .message_user_name {
+    font-size: 0.9em;
+  }
+  .message_content {
+    font-size: 1.2em;
+    border: 1px solid gray;
+    border-radius: 4px;
+    display: inline-block;
+    p {
+      margin: 10px 15px;
+    }
+  }
+  .checked_users {
+    display: none;
+    font-size: 0.9em;
+  }
+}
+
+.self {
+  text-align: right;
+  .message_content {
+    background-color: lightgreen;
+  }
+  .displayed {
+    display: block !important;
+  }  
+}
+
+.form_group {
+  display: flex;
+  align-items: center;
+  margin: 40px;
+}
+#content_form {
+  width: 100%;
+  margin-right: 8px;
+  height: 50px;
+}
+#message-btn {
+  height: 50px;
+  width: 80px;
+  font-size: large;
+}
+
+.emoji {
+  width: 1.5em;
+  height: 1.5em;
+  display: inline-block;
+  margin-bottom: -0.3em;
+}
+
+#result {
+  text-align: center;
+  padding-top: 15px;
+}
+
+// 検索結果
+
+.highlight {
+  background-color:yellow;
+}
+
+#searched-modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 100;
+  display: none;
+}
+
+.modal-content {
+  color: black;
+  border-radius: 10px;
+  margin: 50px;
+  padding: 30px;
+  overflow-y: auto;
+  max-height: 88%;
+}
+
+.fa-times {
+  position: absolute;
+  top: 60px;
+  right: 65px;
+  color: black;
+  cursor: pointer;
+  z-index: 999;
+}
+
+.searched-title {
+  border: 1px solid gray;
+  background-color: lightgray;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 10px;
+}
+
+.searched-message {
+  border-bottom: 1px dotted gray;
+  padding: 20px 0px;
+}
+
+.searched-room {
+  padding-bottom: 10px;
+}

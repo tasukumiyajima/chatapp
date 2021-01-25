@@ -1,24 +1,15 @@
-# README
+# 課題.2：Rails の応用
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+課題2のチャットアプリを開発しましたのでご確認をお願いします。  
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+**実装した機能**  
+1. Action Cableを使ったリアルタイムチャット機能  
+2. チャットルームを新規作成する機能（ajaxで作成可能）  
+3. チャットルーム内のメッセージは一度に全て取得するのではなく、画面が上部にスクロールした際に非同期で追加取得する（ajaxを用いた無限スクロール機能）  
+4. メッセージで絵文字が送信できる（メッセージのテキストボックス内で「:」と入力するとsuggestionが表示される）  
+5. 右上の検索欄でのテキスト検索機能（検索結果はモーダルで表示し、検索ワードに一致する部分はハイライトで表示）  
+6. 既読機能（ajaxを使い非同期で既読したかどうかがリアルタイムで更新される）  
+7. ユーザー登録・ログイン認証・認可の機能はDeviseで実装  
+8. テストはRspecを導入  
+9. リンターとしてRubocop-airbnbを導入  
+10. 開発環境はDockerを使い、CircleCIを使ってHerokuに自動デプロイ  

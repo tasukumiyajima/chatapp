@@ -1,0 +1,9 @@
+$('#searched-modal').html("<%= escape_javascript(render partial: 'searched_modal', locals: {
+  searched_area: @searched_area,
+  messages: @messages,
+  searched_word: @searched_word
+  }) %>");
+$('#searched-modal').fadeIn();
+
+var keyword = $("#keyword").text();
+$(".result").highlight(keyword);
