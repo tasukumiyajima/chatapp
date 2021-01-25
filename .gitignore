@@ -32,3 +32,9 @@
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+
+# Ignore images of emoji
+/images/emoji
+
+# Ignore keep file
+*.keep

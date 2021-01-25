@@ -63,6 +63,6 @@ RSpec.describe "RoomsShows", type: :system, js: true do
     click_on '検索'
     is_expected.to have_content "検索ワード：helloworld", count: 1
     is_expected.to have_content "検索対象のチャットルーム：testroom1", count: 1
-    is_expected.to have_content "testmessage", count: 2 #検索前のワード2つのみ
+    is_expected.to have_content "testmessage", count: 2 # 検索前のワード2つのみ
   end
 end
